@@ -1,0 +1,46 @@
+let red;
+let green;
+let blue;
+let increment;
+let direction;
+let factor;
+let bounds;
+let alpha;
+let size;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  background(0);
+  noStroke();
+  red = 0;
+  green = 0;
+  blue = 0;
+  increment = 1;
+  direction = 1;
+  factor = 5;
+  bounds = 255;
+  alpha = 1;
+  size = 1;
+}
+
+function draw() {
+  red = bounce(red, increment, factor, bounds);
+  green = bounce(random(0,255), 2.5, 1.25, bounds);
+  blue = bounce(random(0,255), 1.75, 1.15, bounds);
+  alpha = bounce(random(0,255), increment, 1.1, bounds);
+  size = bounce(size, 2, 1, mouseX);
+
+  fill(red, green, blue, alpha);
+  circle(mouseX, mouseY, size);
+}
+
+function bounce(num, increment, factor, bounds) {
+  if (num >= bounds) direction = -1;
+  if (num <= 1) direction = 1;
+
+  return (num += direction * increment * factor);
+}
+
+function mousePressed() {
+  background(255);
+}
