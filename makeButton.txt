@@ -1,0 +1,36 @@
+//https://editor.p5js.org/mikerancourt/full/LYaEyLtPC
+
+let x;
+let y;
+let rectWidth;
+let rectHeight;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  background(0);
+  fill(0);
+
+  stroke(220);
+  strokeWeight(3);
+  x = width/4;
+  y = height/4;
+  rectWidth = width/2;
+  rectHeight = height/2;
+}
+
+function draw() {
+  background(0);
+
+  if (
+    mouseIsPressed &&
+    mouseX > x &&
+    mouseX < x + rectWidth &&
+    mouseY > y &&
+    mouseY < y + rectHeight
+  ) {
+    fill(255, 0, 0);
+  } else {
+    fill(0);
+  }
+  rect(x, y, rectWidth, rectHeight);
+}
