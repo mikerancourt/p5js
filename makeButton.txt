@@ -1,4 +1,4 @@
-//https://editor.p5js.org/mikerancourt/full/LYaEyLtPC
+https://editor.p5js.org/mikerancourt/full/LYaEyLtPC
 
 let x;
 let y;
@@ -12,23 +12,26 @@ function setup() {
 
   stroke(220);
   strokeWeight(3);
-  x = width/4;
-  y = height/4;
-  rectWidth = width/2;
-  rectHeight = height/2;
+  x = width / 4;
+  y = height / 4;
+  rectWidth = width / 2;
+  rectHeight = height / 2;
 }
 
 function draw() {
   background(0);
 
   if (
-    mouseIsPressed &&
     mouseX > x &&
     mouseX < x + rectWidth &&
     mouseY > y &&
     mouseY < y + rectHeight
   ) {
-    fill(255, 0, 0);
+    let purple = 96;
+
+    if (mouseIsPressed) purple = 255;
+
+    fill(purple, 24, purple);
   } else {
     fill(0);
   }
