@@ -1,4 +1,4 @@
-//https://editor.p5js.org/mikerancourt/full/YImDXRKFD
+//https://editor.p5js.org/mikerancourt/sketches/YImDXRKFD
 
 let radius = 50;
 let x;
@@ -34,18 +34,16 @@ function draw() {
   xDirection = edgeCheck(x, xDirection, radius, 0);
   yDirection = edgeCheck(y, yDirection, radius, radius);
   
-  
   x = x + (xSpeed * xDirection);
   y = y + (ySpeed * yDirection);
-  
   
 }
 
 function edgeCheck(num, dir, radius, offset)
 {
-  if (num >= width - radius - offset)
+  if (num > width - radius - offset)
     dir = -1;
-  if(num <= 0)
+  if(num < 0)
     dir = 1;
   return dir;
 }
