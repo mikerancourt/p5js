@@ -1,17 +1,18 @@
-//https://editor.p5js.org/mikerancourt/sketches/KNWGhuYFN
+https://editor.p5js.org/mikerancourt/sketches/KNWGhuYFN
 
 let num;
-let radius;
+let diameter;
 let spacing;
 let quotientX;
 let quotientY;
 
-function setup() {
+function setup()
+{
   createCanvas(windowWidth, windowHeight);
   background(0);
 
   num = 10;
-  radius = (windowWidth + windowHeight) / num;
+  diameter = (windowWidth + windowHeight) / num;
   spacing = num / 2;
   quotientX = windowWidth / num; 
   quotientY = windowHeight / num;
@@ -22,17 +23,18 @@ function draw()
   background(0);
   
   let y = 0;
-  while (y < num * quotientY - radius / 2) 
+  
+  while (y < num * quotientY - diameter / 2) 
   {
     let x = 0;
     
-    while (x < num * quotientX + radius / 2) 
+    while (x < num * quotientX + diameter / 2) 
     {
       fill(48);
       
-      let d = dist(mouseX, mouseY, x + radius/2, y - radius/2);
+      let d = dist(mouseX, mouseY, x + diameter/2, y - diameter/2);
       
-      if (d < radius/2 ) 
+      if (d < diameter/2 ) 
       {
         fill(127);
         
@@ -42,11 +44,11 @@ function draw()
           }
       }
       
-      circle(x + radius / 2, y - radius / 2, radius);
+      circle(x + diameter / 2, y - diameter / 2, diameter);
       
-      x += radius + spacing;
+      x += diameter + spacing;
     }
     
-    y += radius + spacing;
+    y += diameter + spacing;
   }
 }
