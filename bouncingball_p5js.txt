@@ -1,0 +1,51 @@
+//https://editor.p5js.org/mikerancourt/full/YImDXRKFD
+
+let radius = 50;
+let x;
+let y;
+let xSpeed;
+let xDirection;
+let ySpeed;
+let yDirection;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  background(24);
+  noStroke();
+  ellipseMode(CENTER);
+  
+  x = 0;
+  y = 0;
+  xSpeed = 5;
+  xDirection = 1;
+  ySpeed = 4;
+  yDirection = 1;
+}
+
+function draw() {
+  //clear frame
+  background(24);
+  noStroke();
+  
+  //ball
+  fill(255,0,0);
+  ellipse(x + radius/2 , y + radius/2, radius, radius);
+  
+  xDirection = edgeCheck(x, xDirection, radius, 0);
+  yDirection = edgeCheck(y, yDirection, radius, radius);
+  
+  
+  x = x + (xSpeed * xDirection);
+  y = y + (ySpeed * yDirection);
+  
+  
+}
+
+function edgeCheck(num, dir, radius, offset)
+{
+  if (num >= width - radius - offset)
+    dir = -1;
+  if(num <= 0)
+    dir = 1;
+  return dir;
+}
