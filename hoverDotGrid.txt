@@ -1,0 +1,35 @@
+//https://editor.p5js.org/mikerancourt/full/KNWGhuYFN
+
+function setup() {
+  
+  createCanvas(windowWidth, windowHeight);
+  background(0);
+  
+  let num = 10;
+  let radius = (windowWidth + windowHeight) / num;
+  let spacing = num / 2;
+
+  
+  let y = 0;
+  while (y < height)
+    {
+      let x = 0;
+      while (x < width)
+        {
+          fill(random(127), random(127), random(127));
+          circle(x + radius/2, y - radius/2, radius);
+          x += radius + spacing;
+        }
+      y += radius + spacing;
+    }
+  
+  // for (y = 0; y < height; y += radius) 
+  // {
+  //   for (x = 0; x < width; x += radius)
+  //   {
+  //     circle(x, y, radius);
+  //   }
+  // }
+}
+
+function draw() {}
