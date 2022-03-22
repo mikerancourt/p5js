@@ -1,0 +1,49 @@
+//https://editor.p5js.org/mikerancourt/full/S9XH00gNs
+
+let count = 100;
+let bubbles = [];
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+
+  for (i = 0; i < count; i++) {
+    let diameter = random(6, 100);
+    let widthMax = width - diameter;
+    let heightMax = height - diameter;
+    let x = random(diameter, widthMax);
+    let y = random(diameter, heightMax);
+    let randCol = color(random(0, 255), random(0, 255), random(0, 255));
+
+    bubbles[i] = new Bubble(x, y, diameter, randCol);
+  }
+}
+
+function draw() {
+  background(0);
+  for (i = 0; i < bubbles.length; i++) {
+    bubbles[i].move();
+    bubbles[i].show();
+  }
+}
+
+class Bubble {
+  constructor(x, y, diameter, color) {
+    this.x = x;
+    this.y = y;
+    this.diameter = diameter;
+    this.color = color;
+  }
+
+  move() {
+    let range = 0.25;
+    this.x += random(-range, range);
+    this.y += random(-range, range);
+  }
+
+  show() {
+    stroke(this.color);
+    strokeWeight(4);
+    noFill();
+    ellipse(this.x, this.y, this.diameter);
+  }
+}
