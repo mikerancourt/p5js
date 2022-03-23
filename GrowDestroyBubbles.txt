@@ -1,0 +1,72 @@
+/*  7.5 Removing Objects from Arrays  */
+/* Splice() demo and global mousePressed() into local object array */
+
+class Bubble {
+  constructor(x, y, r) {
+    this.x = x;
+    this.y = y;
+    this.r = r;
+    this.red = int(random(128));
+    this.green = int(random(128));
+    this.blue = int(random(128));
+    this.randomCol = color(this.red, this.green, this.blue);
+    this.hoveredOver = false;
+  }
+
+  rollOver(pX, pY) {
+    let d = dist(pX, pY, this.x, this.y);
+    if (d < this.r) {
+      this.red *= 1.01;
+      this.green *= 1.01;
+      this.blue *= 1.01;
+      this.randomCol = color(this.red, this.green, this.blue);
+      this.r++;
+      this.hoveredOver = true;
+    } else {
+      this.hoveredOver = false;
+    }
+  }
+
+  move() {
+    let range = 0.5;
+    this.x = this.x + random(-range, range);
+    this.y = this.y + random(-range, range);
+  }
+
+  show() {
+    stroke(255);
+    strokeWeight(4);
+    fill(this.red, this.green, this.blue);
+    ellipse(this.x, this.y, this.r * 2);
+  }
+}
+
+let count = 20;
+let bubbles = [];
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  for (let i = 0; i < count; i++) {
+    let x = random(width);
+    let y = random(height);
+    let r = random(20, 60);
+    let b = new Bubble(x, y, r);
+    bubbles.push(b);
+  }
+}
+
+function mousePressed() {
+  for (let i = bubbles.length - 1; i >= 0; i--) {
+    if (bubbles[i].hoveredOver)
+      bubbles.splice(i, 1);
+  }
+}
+
+function draw() {
+  background(0);
+  for (let i = 0; i < bubbles.length; i++) {
+    bubbles[i].rollOver(mouseX, mouseY);
+    bubbles[i].move();
+    bubbles[i].show();
+  }
+}
