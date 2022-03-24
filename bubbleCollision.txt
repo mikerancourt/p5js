@@ -1,0 +1,81 @@
+/* 
+https://editor.p5js.org/mikerancourt/full/-CXwJ66RA
+
+7.7 Many Object Communications
+
+EXERCISE: rewrite with an i,j
+TESTED WITH: let i = 0; let j = i + 1;
+*/
+
+let bubbles = [];
+let count = 10;
+
+function setup() {
+  createCanvas(600, 400);
+  for (let i = 0; i < count; i++) {
+    let x = random(width);
+    let y = random(height);
+    let r = random(20, 80);
+    bubbles[i] = new Bubble(x, y, r);
+  }
+}
+
+function draw() {
+  background(0);
+
+  for (let i = 0; i < bubbles.length; i ++) {
+    bubbles[i].show();
+    bubbles[i].move();
+    bubbles[i].changeColor(0);
+    
+    for (let j = i + 1; j < bubbles.length; j++) {
+      if ( bubbles[i].intersects(bubbles[j]))
+        {
+          bubbles[i].overlapping = true; 
+          bubbles[j].overlapping = true;  
+        }
+    }
+    if (bubbles[i].overlapping)
+      {
+        bubbles[i].changeColor(255);
+        bubbles[i].overlapping = false;
+      }
+  }
+}
+
+class Bubble {
+  constructor(x, y, r = 50) {
+    this.x = x;
+    this.y = y;
+    this.r = r;
+    this.brightness = 0;
+    this.overlapping = false;
+  }
+
+  intersects(other) {
+    let d = dist(this.x, this.y, other.x, other.y);
+    return d < this.r + other.r;
+  }
+
+  changeColor(val) {
+    this.brightness = val;
+  }
+
+  contains(px, py) {
+    let d = dist(px, py, this.x, this.y);
+    return d < this.r;
+  }
+
+  move() {
+    let range = 2.0;
+    this.x = this.x + random(-range, range);
+    this.y = this.y + random(-range, range);
+  }
+
+  show() {
+    stroke(255);
+    strokeWeight(2);
+    fill(this.brightness);
+    ellipse(this.x, this.y, this.r * 2);
+  }
+}
